@@ -1,0 +1,41 @@
+name: services
+services:
+  mysql:
+    image: mysql:5.7.28
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-database}
+      - MYSQL_USER=${MYSQL_USER:-username}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
+    ports:
+      - 3306
+    volumes:
+      - /var/lib/mysql
+  postgres:
+    image: postgres:12
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-database}
+      - POSTGRES_USER=${POSTGRES_USER:-username}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+    ports:
+      - 5432
+    volumes:
+      - /var/lib/postgresql/data/
+  cassandra:
+    image: scylladb/scylla:3.3.rc2-202003030031
+    ports:
+      - 9042
+    volumes:
+      - /var/lib/scylla
+  solr:
+    image: solr:8.6.3
+    ports:
+      - 8983
+    volumes:
+      - /var/solr
+  redis:
+    image: redis:6.0.9
+    ports:
+      - 6379
+    volumes:
+      - /data

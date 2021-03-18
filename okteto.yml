@@ -1,0 +1,12 @@
+name: proxy
+autocreate: true
+image: alpine
+workdir: /root
+forward:
+  - 4306:mysql:3306
+  - 5432:postgres:5432
+  - 10042:cassandra:9042
+  - 9983:solr:8983
+  - 7379:redis:6379
+persistentVolume:
+  enabled: false
